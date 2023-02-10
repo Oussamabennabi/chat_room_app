@@ -1,0 +1,17 @@
+{% extends 'base/main.html' %} {% load static %} {% block content %}
+
+<main>
+    <h3 class="room-name">Room: <span class="room-name">OUSSAMA</span></h3>
+
+    <div class="videos-grid"></div>
+
+    <div class="control-buttons">
+        <button id="video-btn" ><img id="video-icon" src={% static 'images/no-video.svg' %} alt=""></button>
+        <button id="mic-btn"><img id="mic-icon" src={% static 'images/mute.svg' %} alt=""></button>
+        <button id="leave-btn"><img id="leave-icon" src={% static 'images/no-video.svg' %} alt=""></button>
+    </div>
+</main>
+<script defer src={% static '/AgoraRTC_N-4.16.1.js' %}></script>
+  <script defer src={% static '/streams.js' %}></script>
+  
+{% endblock content %}

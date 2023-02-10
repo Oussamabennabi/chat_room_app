@@ -1,0 +1,42 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block content %}
+<main class="container">
+  <form class="form container">
+    <a href="/"><img class='logo' src={% static 'images/logo.svg' %} alt=""></a>
+    <div class="form-content container" id="lobby-form">
+        <h1>Welcome</h1>
+        <p>Just call your friends.</p>
+
+        <input type="text" class="input" name="room" id="room-name" placeholder="Enter a Room Name...">
+        <input type="text" name="room-name" class="input" placeholder="Enter Your Name...">
+        <button class="button join-room-btn">Join Room</button>
+      </div>
+  </form>
+
+  <script>
+    // Form
+const form = document.getElementById("lobby-form");
+
+form.addEventListener("submit",async (e) => {
+  e.preventDefault()
+
+  const room = e.target.room.value;
+  const res = await fetch(`/get_token/?channel=${room}`);
+  const data = await res.json();
+  const UID = data.uid;
+  const token = data.token;
+  sessionStorage.setItem("UID", UID);
+  sessionStorage.setItem('token',token)
+  sessionStorage.setItem("room", room);
+
+
+  window.open("room/",'_self')
+})
+  </script>
+
+</main>
+
+
+{% endblock content %}
